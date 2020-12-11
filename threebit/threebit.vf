@@ -1,0 +1,50 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 14.7
+//  \   \         Application : sch2hdl
+//  /   /         Filename : threebit.vf
+// /___/   /\     Timestamp : 09/16/2019 16:10:12
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: sch2hdl -intstyle ise -family artix7 -verilog "D:/digital lab/threebit/threebit.vf" -w "D:/digital lab/threebit/threebit.sch"
+//Design Name: threebit
+//Device: artix7
+//Purpose:
+//    This verilog netlist is translated from an ECS schematic.It can be 
+//    synthesized and simulated, but it should not be modified. 
+//
+`timescale 1ns / 1ps
+
+module threebit(a0, 
+                a1, 
+                a2, 
+                x);
+
+    input a0;
+    input a1;
+    input a2;
+   output x;
+   
+   wire XLXN_8;
+   wire XLXN_9;
+   wire XLXN_10;
+   
+   AND2  XLXI_1 (.I0(a1), 
+                .I1(a2), 
+                .O(XLXN_8));
+   AND2  XLXI_2 (.I0(a0), 
+                .I1(a1), 
+                .O(XLXN_9));
+   AND2  XLXI_3 (.I0(a0), 
+                .I1(a2), 
+                .O(XLXN_10));
+   OR3  XLXI_4 (.I0(XLXN_10), 
+               .I1(XLXN_9), 
+               .I2(XLXN_8), 
+               .O(x));
+endmodule
