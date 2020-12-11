@@ -1,0 +1,49 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 14.7
+//  \   \         Application : sch2hdl
+//  /   /         Filename : karan.vf
+// /___/   /\     Timestamp : 09/16/2019 23:48:35
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: sch2hdl -intstyle ise -family artix7 -verilog "D:/digital lab/karan/karan.vf" -w "D:/digital lab/karan/karan.sch"
+//Design Name: karan
+//Device: artix7
+//Purpose:
+//    This verilog netlist is translated from an ECS schematic.It can be 
+//    synthesized and simulated, but it should not be modified. 
+//
+`timescale 1ns / 1ps
+
+module karan(a0, 
+             a1, 
+             a2, 
+             y);
+
+    input a0;
+    input a1;
+    input a2;
+   output y;
+   
+   wire XLXN_1;
+   wire XLXN_2;
+   wire XLXN_7;
+   
+   AND2  XLXI_1 (.I0(XLXN_7), 
+                .I1(a0), 
+                .O(XLXN_1));
+   OR2  XLXI_2 (.I0(a2), 
+               .I1(a1), 
+               .O(XLXN_7));
+   AND2  XLXI_3 (.I0(a2), 
+                .I1(a1), 
+                .O(XLXN_2));
+   OR2  XLXI_4 (.I0(XLXN_2), 
+               .I1(XLXN_1), 
+               .O(y));
+endmodule
