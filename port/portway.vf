@@ -1,0 +1,218 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+////////////////////////////////////////////////////////////////////////////////
+//   ____  ____ 
+//  /   /\/   / 
+// /___/  \  /    Vendor: Xilinx 
+// \   \   \/     Version : 14.7
+//  \   \         Application : sch2hdl
+//  /   /         Filename : portway.vf
+// /___/   /\     Timestamp : 09/12/2019 15:13:46
+// \   \  /  \ 
+//  \___\/\___\ 
+//
+//Command: sch2hdl -intstyle ise -family artix7 -verilog "D:/digital lab/port/portway.vf" -w "D:/digital lab/port/portway.sch"
+//Design Name: portway
+//Device: artix7
+//Purpose:
+//    This verilog netlist is translated from an ECS schematic.It can be 
+//    synthesized and simulated, but it should not be modified. 
+//
+`timescale  100 ps / 10 ps
+
+module M4_1E_HXILINX_portway (O, D0, D1, D2, D3, E, S0, S1);
+    
+
+   output O;
+
+   input  D0;
+   input  D1;
+   input  D2;
+   input  D3;
+   input  E;
+   input  S0;
+   input  S1;
+
+   reg O;
+
+   always @ ( D0 or D1 or D2 or D3 or E or S0 or S1)
+   begin
+      if(!E)
+      O <= 1'b0;
+      else 
+      begin
+        case({S1,S0})
+        2'b00 : O <= D0;
+        2'b01 : O <= D1;
+        2'b10 : O <= D2;
+        2'b11 : O <= D3;
+        endcase
+      end
+   end
+    
+endmodule
+`timescale  100 ps / 10 ps
+
+module D2_4E_HXILINX_portway (D0, D1, D2, D3, A0, A1, E);
+    
+
+   output D0;
+   output D1;
+   output D2;
+   output D3;
+
+   input  A0;
+   input  A1;
+   input  E;
+  
+   reg D0;
+   reg D1;
+   reg D2;
+   reg D3;
+
+      always @ (A0 or A1 or E)
+      begin
+         if(!E)
+           {D3, D2, D1, D0} <= 4'b0000;
+        else
+        begin
+           case({A1,A0})
+             2'b00 : {D3,D2,D1,D0} <= 4'b0001;
+             2'b01 : {D3,D2,D1,D0} <= 4'b0010;
+             2'b10 : {D3,D2,D1,D0} <= 4'b0100;
+             2'b11 : {D3,D2,D1,D0} <= 4'b1000;
+          endcase
+        end
+     end 
+
+endmodule
+`timescale 1ns / 1ps
+
+module portway(DE0_0, 
+               DE0_1, 
+               DE1_0, 
+               DE1_1, 
+               DE2_0, 
+               DE2_1, 
+               DIN0, 
+               DIN1, 
+               DIN2, 
+               R0, 
+               R1, 
+               R2, 
+               A0, 
+               A1, 
+               A2, 
+               DOUT0, 
+               DOUT1, 
+               DOUT2, 
+               S0, 
+               S1);
+
+    input DE0_0;
+    input DE0_1;
+    input DE1_0;
+    input DE1_1;
+    input DE2_0;
+    input DE2_1;
+    input DIN0;
+    input DIN1;
+    input DIN2;
+    input R0;
+    input R1;
+    input R2;
+   output A0;
+   output A1;
+   output A2;
+   output DOUT0;
+   output DOUT1;
+   output DOUT2;
+   output S0;
+   output S1;
+   
+   wire XLXN_3;
+   wire XLXN_4;
+   wire XLXN_9;
+   wire XLXN_10;
+   wire XLXN_11;
+   wire XLXN_21;
+   wire XLXN_37;
+   wire XLXN_45;
+   wire XLXN_53;
+   wire XLXN_54;
+   wire S0_DUMMY;
+   wire S1_DUMMY;
+   
+   assign S0 = S0_DUMMY;
+   assign S1 = S1_DUMMY;
+   AND3  XLXI_1 (.I0(XLXN_4), 
+                .I1(XLXN_3), 
+                .I2(R0), 
+                .O(XLXN_9));
+   AND2  XLXI_2 (.I0(XLXN_4), 
+                .I1(R1), 
+                .O(XLXN_10));
+   INV  XLXI_3 (.I(R1), 
+               .O(XLXN_3));
+   INV  XLXI_4 (.I(R2), 
+               .O(XLXN_4));
+   INV  XLXI_5 (.I(XLXN_9), 
+               .O(XLXN_21));
+   INV  XLXI_6 (.I(XLXN_10), 
+               .O(XLXN_37));
+   AND3  XLXI_12 (.I0(R2), 
+                 .I1(XLXN_37), 
+                 .I2(XLXN_21), 
+                 .O(S1_DUMMY));
+   AND3  XLXI_13 (.I0(XLXN_10), 
+                 .I1(XLXN_4), 
+                 .I2(XLXN_21), 
+                 .O(S0_DUMMY));
+   (* HU_SET = "XLXI_15_0" *) 
+   M4_1E_HXILINX_portway  XLXI_15 (.D0(DE0_0), 
+                                  .D1(DE1_0), 
+                                  .D2(DE2_0), 
+                                  .D3(), 
+                                  .E(XLXN_11), 
+                                  .S0(S0_DUMMY), 
+                                  .S1(S1_DUMMY), 
+                                  .O(XLXN_53));
+   (* HU_SET = "XLXI_16_1" *) 
+   M4_1E_HXILINX_portway  XLXI_16 (.D0(DE0_1), 
+                                  .D1(DE1_1), 
+                                  .D2(DE2_1), 
+                                  .D3(), 
+                                  .E(XLXN_11), 
+                                  .S0(S0_DUMMY), 
+                                  .S1(S1_DUMMY), 
+                                  .O(XLXN_54));
+   OR3  XLXI_18 (.I0(R2), 
+                .I1(R0), 
+                .I2(R1), 
+                .O(XLXN_11));
+   (* HU_SET = "XLXI_20_2" *) 
+   D2_4E_HXILINX_portway  XLXI_20 (.A0(XLXN_53), 
+                                  .A1(XLXN_54), 
+                                  .E(XLXN_45), 
+                                  .D0(DOUT0), 
+                                  .D1(DOUT1), 
+                                  .D2(DOUT2), 
+                                  .D3());
+   (* HU_SET = "XLXI_21_3" *) 
+   M4_1E_HXILINX_portway  XLXI_21 (.D0(DIN0), 
+                                  .D1(DIN1), 
+                                  .D2(DIN2), 
+                                  .D3(), 
+                                  .E(XLXN_11), 
+                                  .S0(S0_DUMMY), 
+                                  .S1(S1_DUMMY), 
+                                  .O(XLXN_45));
+   (* HU_SET = "XLXI_22_4" *) 
+   D2_4E_HXILINX_portway  XLXI_22 (.A0(XLXN_53), 
+                                  .A1(XLXN_54), 
+                                  .E(XLXN_11), 
+                                  .D0(A0), 
+                                  .D1(A1), 
+                                  .D2(A2), 
+                                  .D3());
+endmodule
